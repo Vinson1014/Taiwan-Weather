@@ -1,0 +1,12 @@
+  {
+    "domain": "taiwan_weather",
+    "name": "Taiwan Weather",
+    "codeowners": ["@Vinson1014"],
+    "config_flow": true,
+    "dependencies": [],
+    "documentation": "https://github.com/Vinson1014/Taiwan-Weather",
+    "integration_type": "service",
+    "version": "1.0.0",
+    "iot_class": "cloud_polling",
+    "requirements": []
+  }

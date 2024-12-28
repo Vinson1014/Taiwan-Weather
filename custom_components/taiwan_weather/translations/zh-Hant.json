@@ -1,0 +1,24 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "設定中央氣象署API",
+                "data": {
+                    "api_key": "API 金鑰",
+                    "city": "縣市",
+                    "district": "鄉鎮市區",
+                    "forecast_duration_type": "預報時間長度",
+                    "name": "實體名稱(選填)"
+                }
+            }
+        },
+        "error": {
+            "cannot_connect": "無法連接到氣象署 API",
+            "invalid_api_key": "無效的 API 金鑰",
+            "unknown": "未知錯誤"
+        },
+        "abort": {
+            "already_configured": "此位置已經設定過了"
+        }
+    }
+}
