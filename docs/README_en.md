@@ -36,6 +36,7 @@ You can install this integration via HACS (recommended) or manually.
 1. Enter your API Key.
 2. Select a city and enter the name of the district/township (must be accurate; refer to [this guide](/docs/districts_table.md) for proper names).
 3. The entity name option allows you to customize the entity name of this integration. If left blank, it will default to the district/township name.
+
 ![Configure Integration](./attachments/configure_integration.png)
 
 ---

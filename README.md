@@ -36,6 +36,7 @@ Taiwan-Weather 是一個 Home Assistant 的自訂整合，能透過 [中央氣�
 1. 輸入您的 API 金鑰。
 2. 選擇縣市並填寫正確的鄉鎮市區名稱（可參考[這裡](/docs/districts_table.md)了解如何取得正確名稱）。
 3. 實體名稱選項可自訂該整合的實體名稱，若留空則默認使用鄉鎮市區名稱。
+
 ![設定整合](./docs/attachments/configure_integration.png)
 
 ---
