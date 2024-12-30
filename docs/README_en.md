@@ -1,8 +1,10 @@
-<div style="text-align:center;">
-  
-  ![Taiwan Weather Icon](/docs/attachments/icon.png)
-[繁體中文 ver.](/README.md)
-</div>
+<p align="center">
+  <img src="/docs/attachments/icon.png" alt="Taiwan Weather Icon"/>
+</p>
+
+<p align="center">
+  <a href="/README.md">繁體中文 ver.</a>
+</p>
 
 # Taiwan-Weather
 
