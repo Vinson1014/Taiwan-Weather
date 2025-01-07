@@ -25,6 +25,7 @@ SENSOR_TYPES = {
         "unit": UnitOfTemperature.CELSIUS,
         "icon": "mdi:thermometer",
         "device_class": SensorDeviceClass.TEMPERATURE,
+        "state_class": SensorStateClass.MEASUREMENT,
         "api_name": "Temperature"
     },
     "dew_point": {
@@ -32,6 +33,7 @@ SENSOR_TYPES = {
         "unit": UnitOfTemperature.CELSIUS,
         "icon": "mdi:water",
         "device_class": SensorDeviceClass.TEMPERATURE,
+        "state_class": SensorStateClass.MEASUREMENT,
         "api_name": "DewPoint"
     },
     "apparent_temperature": {
@@ -39,6 +41,7 @@ SENSOR_TYPES = {
         "unit": UnitOfTemperature.CELSIUS,
         "icon": "mdi:thermometer",
         "device_class": SensorDeviceClass.TEMPERATURE,
+        "state_class": SensorStateClass.MEASUREMENT,
         "api_name": "ApparentTemperature"
     },
     "comfort_index": {
@@ -46,6 +49,7 @@ SENSOR_TYPES = {
         "unit": None,
         "icon": "mdi:baby-face-outline",
         "device_class": None,
+        "state_class": SensorStateClass.MEASUREMENT,
         "api_name": "ComfortIndex"
     },
     # "comfort_description": {
@@ -60,20 +64,23 @@ SENSOR_TYPES = {
         "unit": PERCENTAGE,
         "icon": "mdi:water-percent",
         "device_class": SensorDeviceClass.HUMIDITY,
+        "state_class": SensorStateClass.MEASUREMENT,
         "api_name": "RelativeHumidity"
     },
-    # "wind_direction": {
-    #     "name": "Wind Direction",
-    #     "unit": None,
-    #     "icon": "mdi:compass",
-    #     "device_class": None,
-    #     "api_name": "WindDirection"
-    # },
+    "wind_direction": {
+        "name": "Wind Direction",
+        "unit": None,
+        "icon": "mdi:compass",
+        "device_class": SensorDeviceClass.ENUM,
+        "state_class": SensorStateClass.MEASUREMENT,
+        "api_name": "WindDirection"
+    },
     "wind_speed": {
         "name": "Wind Speed",
         "unit": UnitOfSpeed.METERS_PER_SECOND,
         "icon": "mdi:weather-windy",
         "device_class": SensorDeviceClass.WIND_SPEED,
+        "state_class": SensorStateClass.MEASUREMENT,
         "api_name": "WindSpeed"
     },
     # "beaufort_scale": {
@@ -87,7 +94,8 @@ SENSOR_TYPES = {
         "name": "Precipitation Probability",
         "unit": PERCENTAGE,
         "icon": "mdi:water",
-        "device_class": SensorDeviceClass.PRECIPITATION,
+        "device_class": None,
+        "state_class": SensorStateClass.MEASUREMENT,
         "api_name": "ProbabilityOfPrecipitation"
     },
     # "weather_description": {
@@ -102,6 +110,7 @@ SENSOR_TYPES = {
         "unit": None,
         "icon": "mdi:clock-time-eight",
         "device_class": SensorDeviceClass.TIMESTAMP,
+        "state_class": None,
         "api_name": "last_update_time"
     }
 }
@@ -136,7 +145,7 @@ class TaiwanWeatherSensor(CoordinatorEntity, SensorEntity, TextEntity, DateTimeE
         self._attr_name = f"{config_entry.data.get("district")} {SENSOR_TYPES[sensor_type]['name']}"
         self._attr_native_unit_of_measurement = SENSOR_TYPES[sensor_type]["unit"]
         self._attr_device_class = SENSOR_TYPES[sensor_type]["device_class"]
-        self._attr_state_class = SensorStateClass.MEASUREMENT
+        self._attr_state_class = getattr(SENSOR_TYPES[sensor_type], "state_class", None)
         self._attr_icon = SENSOR_TYPES[sensor_type]["icon"]
         self._attr_device_info = DeviceInfo(
             entry_type=DeviceEntryType.SERVICE,
