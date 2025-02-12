@@ -1,4 +1,5 @@
 """Config flow for Taiwan Weather."""
+
 from __future__ import annotations
 
 import logging
@@ -14,6 +15,7 @@ from .api import CWAAPIClient
 from .const import API_LOCATION_MAPPING, DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
+
 
 class CWAWeatherConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Taiwan  Weather."""
@@ -37,12 +39,12 @@ class CWAWeatherConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     user_input["district"] = user_input["district"].replace("台", "臺")
 
                 # 取得天氣預報資料
-                data = await api.async_get_weather(
+                data = await api.get_weather(
                     user_input["city"],
                     user_input["district"],
-                    user_input.get("forecast_duration_type", "three_days")
+                    user_input.get("forecast_duration_type", "three_days"),
                 )
-                await api.async_close()
+                api.close()
 
                 if data:
                     # 建立唯一ID，避免重複設定
@@ -51,8 +53,8 @@ class CWAWeatherConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     self._abort_if_unique_id_configured()
 
                     return self.async_create_entry(
-                        title=user_input.get(CONF_NAME, user_input['district']),
-                        data=user_input
+                        title=user_input.get(CONF_NAME, user_input["district"]),
+                        data=user_input,
                     )
 
                 errors["base"] = "cannot_connect"
@@ -61,7 +63,7 @@ class CWAWeatherConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 _LOGGER.exception("Unexpected exception")
                 errors["base"] = "unknown"
             finally:
-                await api.async_close()
+                api.close()
 
         # 取得所有縣市
         cities = list(API_LOCATION_MAPPING["鄉鎮天氣預報"]["location"].keys())
@@ -75,8 +77,9 @@ class CWAWeatherConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             {
                 vol.Required(CONF_API_KEY): str,
                 vol.Required("city"): vol.In(cities),
-                vol.Required("district", default=districts[0] if districts else ""):
-                    vol.In(districts) if districts else str,
+                vol.Required(
+                    "district", default=districts[0] if districts else ""
+                ): vol.In(districts) if districts else str,
                 vol.Optional(CONF_NAME): str,
             }
         )

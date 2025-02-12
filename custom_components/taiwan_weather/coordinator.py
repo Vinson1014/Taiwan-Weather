@@ -1,4 +1,5 @@
 """Data update coordinator for Taiwan Weather."""
+
 from datetime import datetime, timedelta, timezone
 import logging
 from typing import Any
@@ -14,6 +15,7 @@ from .cwa_data_parser import CWADataParser
 
 _LOGGER = logging.getLogger(__name__)
 
+
 class CWAAPIClientError(Exception):
     """Exception class for CWA API errors."""
 
@@ -26,13 +28,15 @@ class CWADataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         self.api = CWAAPIClient(entry.data[CONF_API_KEY])
         self.parser = CWADataParser(self.api)
         self.city = entry.data["city"]
-        self.district = entry.data["district"] if entry.data["district"] else None # 如果district為空，則不傳遞district參數
+        self.district = (
+            entry.data["district"] if entry.data["district"] else None
+        )  # 如果district為空，則不傳遞district參數
 
         super().__init__(
             hass,
             _LOGGER,
             name=DOMAIN,
-            update_interval=timedelta(minutes=UPDATE_INTERVAL)  # 每60分鐘更新一次
+            update_interval=timedelta(minutes=UPDATE_INTERVAL),  # 每60分鐘更新一次
         )
 
     async def _async_setup(self):
@@ -50,7 +54,9 @@ class CWADataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 data = await self.setup_weather_data()  # 更新天氣資料
             else:
                 data = self.api.api_response_data  # 使用上次的資料，避免頻繁請求API
-                _LOGGER.debug(f"Time: {datetime.now(tz=timezone(timedelta(hours=8))).strftime("%Y-%m-%dT%H:%M:00+08:00")}, Using cached weather data")  # noqa: G004
+                _LOGGER.debug(
+                    f"Time: {datetime.now(tz=timezone(timedelta(hours=8))).strftime('%Y-%m-%dT%H:%M:00+08:00')}, Using cached weather data"  # noqa: G004
+                )
 
             return data  # noqa: TRY300
 
@@ -66,7 +72,7 @@ class CWADataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     async def setup_weather_data(self) -> dict[str, Any] | None:
         """Set up weather data."""
         self.parser.clear_weather_element()
-        data = await self.api.async_get_weather(self.city, self.district)
+        data = await self.api.get_weather(self.city, self.district)
         self.check_weather_response()
         return data
 
@@ -78,4 +84,4 @@ class CWADataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     async def async_shutdown(self):
         """Shutdown the coordinator."""
         await super().async_shutdown()
-        await self.api.async_close()
+        self.api.close()
