@@ -13,7 +13,8 @@ Taiwan-Weather 是一個 Home Assistant 的自訂整合，能透過 [中央氣�
 ## 使用方法
 
 ### 1. 取得 API 金鑰
-在 [氣象資料開放平台](https://opendata.cwa.gov.tw/index) 註冊帳號，並取得 [API 金鑰](https://opendata.cwa.gov.tw/user/authkey)。  
+在 [氣象資料開放平台](https://opendata.cwa.gov.tw/index) 註冊帳號，並取得 [API 金鑰](https://opendata.cwa.gov.tw/user/authkey)。 
+ 
 ![取得 API 金鑰](./docs/attachments/get_api_key.png)
 
 ### 2. 安裝整合

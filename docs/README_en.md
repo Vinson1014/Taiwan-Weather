@@ -13,7 +13,8 @@ Taiwan-Weather is a custom integration for Home Assistant that retrieves accurat
 ## Usage Instructions
 
 ### 1. Obtain an API Key
-Register an account on the [CWA Open Data Platform](https://opendata.cwa.gov.tw/index) and obtain an [API Key](https://opendata.cwa.gov.tw/user/authkey).  
+Register an account on the [CWA Open Data Platform](https://opendata.cwa.gov.tw/index) and obtain an [API Key](https://opendata.cwa.gov.tw/user/authkey). 
+ 
 ![Obtain API Key](./attachments/get_api_key.png)
 
 ### 2. Install the Integration
