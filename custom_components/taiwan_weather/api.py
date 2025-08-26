@@ -3,6 +3,7 @@
 import asyncio
 from datetime import datetime, timedelta, timezone
 import logging
+from pathlib import Path
 from types import TracebackType
 from typing import Any
 
@@ -24,6 +25,13 @@ class CWAAPIClient:
         self.api_response_data: dict[str, Any] | None = None
         self.last_update_time: datetime | None = None
         self._session = requests.Session()
+
+        # 設置TWCA憑證路徑
+        cert_path = Path(__file__).parent / "opendata-cwa-gov-tw.pem"
+        if cert_path.exists():
+            self._session.verify = str(cert_path)
+        else:
+            _LOGGER.warning("TWCA certificate not found at %s, using system default", cert_path)
 
     def __enter__(self) -> "CWAAPIClient":
         """Enter context manager."""
@@ -117,22 +125,48 @@ class CWAAPIClient:
 
 if __name__ == "__main__":
     # 快速測試CWAAPIClient
-    # api_key = "your_api_key_here"
+    # 如要測試請註解掉第12行的相對導入，並取消註解下面的測試程式碼
+    # api_key = "your-api-key"  # 請替換為您的實際API金鑰
 
-    # client = CWAAPIClient(api_key)
-    # city = "臺北市"
-    # district = "信義區"
+    # # API 相關資訊
+    # API_BASE_URL  = "https://opendata.cwa.gov.tw/api/v1/rest/datastore"
 
-    # endpoint = API_LOCATION_MAPPING["鄉鎮天氣預報"]["location"]["臺灣"]["three_days"]
-
-    # url = f"{API_BASE_URL}/{API_LOCATION_MAPPING['鄉鎮天氣預報']['id']}-{endpoint}"
-
-    # params = {
-    #     "Authorization": api_key,
-    #     "LocationName": district if district else city,
+    # API_LOCATION_MAPPING = {
+    #     "鄉鎮天氣預報": {
+    #         "id": "F-D0047",
+    #         "forecast_duration_type": {
+    #             "three_days" : "三日預報",
+    #             "weekly" : "一周預報"
+    #         },
+    #         "location": {
+    #             "臺北市": {
+    #                 "three_days": "061", # F-D0047-061
+    #                 "weekly": "063", # F-D0047-063
+    #                 "district": ["北投區", "士林區", "內湖區", "中山區", "大同區", "松山區", "南港區", "中正區", "萬華區", "信義區", "大安區", "文山區"]
+    #             },
+    #             "臺灣": {
+    #                 "three_days": "089", # F-D0047-089
+    #                 "weekly": "091", # F-D0047-091
+    #                 "district": ["宜蘭縣", "花蓮縣", "臺東縣", "澎湖縣", "金門縣", "連江縣", "臺北市", "新北市", "桃園市", "臺中市", "臺南市", "高雄市", "基隆市", "新竹縣", "新竹市", "苗栗縣", "彰化縣", "南投縣", "雲林縣", "嘉義縣", "嘉義市", "屏東縣"]
+    #             }
+    #         }
+    #     }
     # }
 
-    # res = client.get_weather(city=city, district=district)
-    # print(res)
+    # async def test_api():
+    #     client = CWAAPIClient(api_key)
+    #     city = "臺北市"
+    #     district = "信義區"
 
+    #     try:
+    #         res = await client.get_weather(city=city, district=district)
+    #         print("API Response:")
+    #         print(res)
+    #     except Exception as e:
+    #         print(f"Error occurred: {e}")
+    #     finally:
+    #         client.close()
+
+    # # 運行測試
+    # asyncio.run(test_api())
     pass
