@@ -6,9 +6,14 @@
                 "data": {
                     "api_key": "API 金鑰",
                     "city": "縣市",
-                    "district": "鄉鎮市區",
                     "forecast_duration_type": "預報時間長度",
                     "name": "實體名稱(選填)"
+                }
+            },
+            "district": {
+                "title": "選擇鄉鎮市區",
+                "data": {
+                    "district": "鄉鎮市區"
                 }
             },
             "rainfall_station": {
@@ -22,6 +27,7 @@
         "error": {
             "cannot_connect": "無法連接到氣象署 API",
             "invalid_api_key": "無效的 API 金鑰",
+            "invalid_district": "無效的鄉鎮市區",
             "unknown": "未知錯誤"
         },
         "abort": {
