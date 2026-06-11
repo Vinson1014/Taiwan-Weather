@@ -19,6 +19,7 @@ PLATFORMS: list[Platform] = [Platform.SENSOR, Platform.WEATHER]
 # 預設值和更新週期
 DEFAULT_NAME = "Taiwan Weather"
 UPDATE_INTERVAL = 60  # 分鐘
+REQUEST_TIMEOUT = 20  # 秒
 
 
 # API 相關資訊

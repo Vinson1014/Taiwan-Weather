@@ -10,6 +10,13 @@
                     "forecast_duration_type": "預報時間長度",
                     "name": "實體名稱(選填)"
                 }
+            },
+            "rainfall_station": {
+                "title": "選擇降雨觀測站（選填）",
+                "description": "以下為距離 Home Assistant 所在位置最近的雨量站，可用於自動灑水等情境。若不需要可選擇「不啟用」。",
+                "data": {
+                    "rainfall_station_id": "雨量站"
+                }
             }
         },
         "error": {
