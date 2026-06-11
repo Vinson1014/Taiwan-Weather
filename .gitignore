@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Build and packaging
+build/
+dist/
+*.egg-info/
+
+# Editors and OS files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local environment and secrets
+.env
+.env.*
+secrets.yaml
+known_devices.yaml
+
+# Home Assistant local runtime artifacts
+.storage/
+deps/
+tts/
+www/community/
+home-assistant.log*
+home-assistant_v2.db*
+home-assistant.log.fault
+OZW_Log.txt
+
+# Local diagnostics and generated samples
+diagnostics/
+*.log
