@@ -87,7 +87,10 @@ class CWADataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         """Set up weather data."""
         self.parser.clear_weather_element()
         data = await self.api.get_weather(self.city, self.district)
-        self.check_weather_response()
+        if data is None:
+            self.check_weather_response()
+            _LOGGER.warning("Using cached weather data because the latest fetch failed")
+            return self.api.api_response_data
 
         return data
 

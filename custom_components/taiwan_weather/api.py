@@ -9,7 +9,7 @@ from typing import Any
 
 import requests
 
-from .const import API_BASE_URL, API_LOCATION_MAPPING
+from .const import API_BASE_URL, API_LOCATION_MAPPING, REQUEST_TIMEOUT
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -97,7 +97,7 @@ class CWAAPIClient:
 
             try:
                 response = await asyncio.to_thread(
-                    self._session.get, url, params=params
+                    self._session.get, url, params=params, timeout=REQUEST_TIMEOUT
                 )
                 response.raise_for_status()
 
