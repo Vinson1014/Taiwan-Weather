@@ -21,7 +21,7 @@ from .coordinator import CWADataUpdateCoordinator
 
 SENSOR_TYPES = {
     "temperature": {
-        "name": "Temperature",
+        "name": "溫度",
         "unit": UnitOfTemperature.CELSIUS,
         "icon": "mdi:thermometer",
         "device_class": SensorDeviceClass.TEMPERATURE,
@@ -29,7 +29,7 @@ SENSOR_TYPES = {
         "api_name": "Temperature"
     },
     "dew_point": {
-        "name": "Dew Point",
+        "name": "露點溫度",
         "unit": UnitOfTemperature.CELSIUS,
         "icon": "mdi:water",
         "device_class": SensorDeviceClass.TEMPERATURE,
@@ -37,7 +37,7 @@ SENSOR_TYPES = {
         "api_name": "DewPoint"
     },
     "apparent_temperature": {
-        "name": "Apparent Temperature",
+        "name": "體感溫度",
         "unit": UnitOfTemperature.CELSIUS,
         "icon": "mdi:thermometer",
         "device_class": SensorDeviceClass.TEMPERATURE,
@@ -45,7 +45,7 @@ SENSOR_TYPES = {
         "api_name": "ApparentTemperature"
     },
     "comfort_index": {
-        "name": "Comfort Index",
+        "name": "舒適度指數",
         "unit": None,
         "icon": "mdi:baby-face-outline",
         "device_class": None,
@@ -60,7 +60,7 @@ SENSOR_TYPES = {
     #     "api_name": "ComfortIndexDescription"
     # },
     "relative_humidity": {
-        "name": "Relative Humidity",
+        "name": "相對濕度",
         "unit": PERCENTAGE,
         "icon": "mdi:water-percent",
         "device_class": SensorDeviceClass.HUMIDITY,
@@ -68,7 +68,7 @@ SENSOR_TYPES = {
         "api_name": "RelativeHumidity"
     },
     "wind_direction": {
-        "name": "Wind Direction",
+        "name": "風向",
         "unit": None,
         "icon": "mdi:compass",
         "device_class": SensorDeviceClass.ENUM,
@@ -76,7 +76,7 @@ SENSOR_TYPES = {
         "api_name": "WindDirection"
     },
     "wind_speed": {
-        "name": "Wind Speed",
+        "name": "風速",
         "unit": UnitOfSpeed.METERS_PER_SECOND,
         "icon": "mdi:weather-windy",
         "device_class": SensorDeviceClass.WIND_SPEED,
@@ -91,7 +91,7 @@ SENSOR_TYPES = {
     #     "api_name": "BeaufortScale"
     # },
     "precipitation_probability": {
-        "name": "Precipitation Probability",
+        "name": "降雨機率",
         "unit": PERCENTAGE,
         "icon": "mdi:water",
         "device_class": None,
@@ -106,7 +106,7 @@ SENSOR_TYPES = {
     #     "api_name": "WeatherDescription"
     # }
     "api_last_update_time": {
-        "name": "API Last Update Time",
+        "name": "API 最後更新時間",
         "unit": None,
         "icon": "mdi:clock-time-eight",
         "device_class": SensorDeviceClass.TIMESTAMP,
@@ -117,7 +117,7 @@ SENSOR_TYPES = {
 
 RAINFALL_SENSOR_TYPES: dict[str, dict] = {
     "rainfall_now": {
-        "name": "Rainfall Today",
+        "name": "本日累積雨量",
         "period_key": "now",
         "unit": UnitOfLength.MILLIMETERS,
         "device_class": SensorDeviceClass.PRECIPITATION,
@@ -125,7 +125,7 @@ RAINFALL_SENSOR_TYPES: dict[str, dict] = {
         "icon": "mdi:weather-rainy",
     },
     "rainfall_10min": {
-        "name": "Rainfall Past 10 Min",
+        "name": "過去 10 分鐘累積雨量",
         "period_key": "past_10min",
         "unit": UnitOfLength.MILLIMETERS,
         "device_class": SensorDeviceClass.PRECIPITATION,
@@ -133,7 +133,7 @@ RAINFALL_SENSOR_TYPES: dict[str, dict] = {
         "icon": "mdi:weather-rainy",
     },
     "rainfall_1hr": {
-        "name": "Rainfall Past 1 Hour",
+        "name": "過去 1 小時累積雨量",
         "period_key": "past_1hr",
         "unit": UnitOfLength.MILLIMETERS,
         "device_class": SensorDeviceClass.PRECIPITATION,
@@ -141,7 +141,7 @@ RAINFALL_SENSOR_TYPES: dict[str, dict] = {
         "icon": "mdi:weather-rainy",
     },
     "rainfall_3hr": {
-        "name": "Rainfall Past 3 Hours",
+        "name": "過去 3 小時累積雨量",
         "period_key": "past_3hr",
         "unit": UnitOfLength.MILLIMETERS,
         "device_class": SensorDeviceClass.PRECIPITATION,
@@ -149,7 +149,7 @@ RAINFALL_SENSOR_TYPES: dict[str, dict] = {
         "icon": "mdi:weather-rainy",
     },
     "rainfall_6hr": {
-        "name": "Rainfall Past 6 Hours",
+        "name": "過去 6 小時累積雨量",
         "period_key": "past_6hr",
         "unit": UnitOfLength.MILLIMETERS,
         "device_class": SensorDeviceClass.PRECIPITATION,
@@ -157,7 +157,7 @@ RAINFALL_SENSOR_TYPES: dict[str, dict] = {
         "icon": "mdi:weather-rainy",
     },
     "rainfall_12hr": {
-        "name": "Rainfall Past 12 Hours",
+        "name": "過去 12 小時累積雨量",
         "period_key": "past_12hr",
         "unit": UnitOfLength.MILLIMETERS,
         "device_class": SensorDeviceClass.PRECIPITATION,
@@ -165,7 +165,7 @@ RAINFALL_SENSOR_TYPES: dict[str, dict] = {
         "icon": "mdi:weather-rainy",
     },
     "rainfall_24hr": {
-        "name": "Rainfall Past 24 Hours",
+        "name": "過去 24 小時累積雨量",
         "period_key": "past_24hr",
         "unit": UnitOfLength.MILLIMETERS,
         "device_class": SensorDeviceClass.PRECIPITATION,
@@ -173,7 +173,7 @@ RAINFALL_SENSOR_TYPES: dict[str, dict] = {
         "icon": "mdi:weather-rainy",
     },
     "rainfall_2days": {
-        "name": "Rainfall Past 2 Days",
+        "name": "前 2 日累積雨量",
         "period_key": "past_2days",
         "unit": UnitOfLength.MILLIMETERS,
         "device_class": SensorDeviceClass.PRECIPITATION,
@@ -181,7 +181,7 @@ RAINFALL_SENSOR_TYPES: dict[str, dict] = {
         "icon": "mdi:weather-rainy",
     },
     "rainfall_3days": {
-        "name": "Rainfall Past 3 Days",
+        "name": "前 3 日累積雨量",
         "period_key": "past_3days",
         "unit": UnitOfLength.MILLIMETERS,
         "device_class": SensorDeviceClass.PRECIPITATION,
@@ -189,7 +189,7 @@ RAINFALL_SENSOR_TYPES: dict[str, dict] = {
         "icon": "mdi:weather-rainy",
     },
     "rainfall_obs_time": {
-        "name": "Rainfall Observation Time",
+        "name": "雨量觀測時間",
         "period_key": "obs_time",
         "unit": None,
         "device_class": SensorDeviceClass.TIMESTAMP,

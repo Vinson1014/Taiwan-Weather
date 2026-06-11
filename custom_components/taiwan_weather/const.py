@@ -17,7 +17,7 @@ MANUFACTURER = "CWA Open Weather Data"  # 製造商名稱
 PLATFORMS: list[Platform] = [Platform.SENSOR, Platform.WEATHER]
 
 # 預設值和更新週期
-DEFAULT_NAME = "Taiwan Weather"
+DEFAULT_NAME = "台灣天氣"
 UPDATE_INTERVAL = 60  # 分鐘
 REQUEST_TIMEOUT = 20  # 秒
 
