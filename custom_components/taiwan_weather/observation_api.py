@@ -3,7 +3,6 @@
 import asyncio
 import logging
 import math
-from pathlib import Path
 from typing import Any
 
 import requests
@@ -42,14 +41,9 @@ class CWARainfallClient:
     """Client for CWA rainfall observation API."""
 
     def __init__(self, api_key: str) -> None:
-        """Initialize the client with SSL certificate matching the forecast API."""
+        """Initialize the client."""
         self._api_key = api_key
         self._session = requests.Session()
-        cert_path = Path(__file__).parent / "opendata-cwa-gov-tw.pem"
-        if cert_path.exists():
-            self._session.verify = str(cert_path)
-        else:
-            _LOGGER.warning("TWCA certificate not found at %s", cert_path)
 
     async def get_all_stations(self) -> list[dict[str, Any]]:
         """Fetch metadata for all rainfall stations."""

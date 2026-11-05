@@ -3,7 +3,6 @@
 import asyncio
 from datetime import datetime, timedelta, timezone
 import logging
-from pathlib import Path
 from types import TracebackType
 from typing import Any
 
@@ -25,13 +24,6 @@ class CWAAPIClient:
         self.api_response_data: dict[str, Any] | None = None
         self.last_update_time: datetime | None = None
         self._session = requests.Session()
-
-        # 設置TWCA憑證路徑
-        cert_path = Path(__file__).parent / "opendata-cwa-gov-tw.pem"
-        if cert_path.exists():
-            self._session.verify = str(cert_path)
-        else:
-            _LOGGER.warning("TWCA certificate not found at %s, using system default", cert_path)
 
     def __enter__(self) -> "CWAAPIClient":
         """Enter context manager."""
